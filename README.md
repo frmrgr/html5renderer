@@ -31,20 +31,12 @@ The first is an inclusion command, so that index.php can recognize the library.
     ?>
 
 Each tag-class has constructor with two parameters type and value.
-Type has following settings:
+Type has following settings
 
-1. generates tag in the form
-
-    <tagname />
-
-2. generates tag in the form
-
-    <tagname>
-    </tagname>
-
-3. generates tag in the form
-
-    <tagname></tagname>
+    1 - <tagname />
+    2 - <tagname>
+        </tagname>
+    3 - <tagname></tagname>
 
 and value works only if type is 2 or 3 and generates in the form
 
