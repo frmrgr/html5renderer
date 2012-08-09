@@ -1,0 +1,136 @@
+<?php
+
+	/**
+	 * Defines sound content
+	 * Supported by all known browsers.
+	 **/
+	class Audio extends EventAndGlobalAttributes {
+
+		/**
+		 * Tag 'audio'
+		 * @param integer $type type 1,2 or 3 (default=2)
+		 *    generates the tag in the form
+		 *    <code>&lt;audio /&gt</code>,
+		 *    <code>&lt;audio&gt;</code>
+		 *    <code>&lt;/audio&gt;</code> and
+		 *    <code>&lt;audio&gt;&lt;/audio&gt;</code> correspondingly.
+		 * @param string $value The tag's value (default='')
+		 *    works only if type is 2 or 3 and generates in the form
+		 *    <code>&lt;audio&gt;</code>
+		 *    <code>   $value</code>
+		 *    <code>&lt;/audio&gt;</code> or
+		 *    <code>&lt;audio&gt;$value&lt;/audio&gt;</code> correspondingly.
+		 **/
+		function __construct($type = 2, $value = '') {
+			parent::__construct('audio', in_array($type, array(1,2,3)) ?
+					$type : 2, $value);
+		}
+
+		/**
+		 * Attribute autoplay
+		 * Supported by all known browsers.
+		 * @param string $value value of the attribute in set {"autoplay"
+		 *        , ""}
+		 * @return void
+		 **/
+		function setAttrAutoplay($value) {
+			if (RendererConf::developing &&
+					!in_array($value, array('autoplay', ''))) {
+				throw new Exception($this->attrExc('autoplay', $value));
+			} else {
+				$this->setAttr('autoplay', $value);
+			}
+		}
+
+		/**
+		 * Attribute controls
+		 * Supported by all known browsers.
+		 * @param string $value value of the attribute in set {"controls"
+		 *        , ""}
+		 * @return void
+		 **/
+		function setAttrControls($value) {
+			if (RendererConf::developing &&
+					!in_array($value, array('controls', ''))) {
+				throw new Exception($this->attrExc('controls', $value));
+			} else {
+				$this->setAttr('controls', $value);
+			}
+		}
+
+		/**
+		 * Attribute loop
+		 * Supported by all known browsers.
+		 * @param string $value value of the attribute in set {"loop"
+		 *        , ""}
+		 * @return void
+		 **/
+		function setAttrLoop($value) {
+			if (RendererConf::developing &&
+					!in_array($value, array('loop', ''))) {
+				throw new Exception($this->attrExc('loop', $value));
+			} else {
+				$this->setAttr('loop', $value);
+			}
+		}
+
+		/**
+		 * Attribute preload
+		 *  - Warning Not supported in Internet Explorer and Opera.
+		 * @param string $value value of the attribute in set {"auto"
+		 *        , "metadata", "none"}
+		 * @return void
+		 **/
+		function setAttrPreload($value) {
+			if (RendererConf::developing &&
+					!in_array($value, array('auto', 'metadata'
+							, 'none'))) {
+				throw new Exception($this->attrExc('preload', $value));
+			} else {
+				$this->setAttr('preload', $value);
+			}
+		}
+
+		/**
+		 * Attribute src
+		 * Supported by all known browsers.
+		 * @param string $value value of the attribute
+		 * @return void
+		 **/
+		function setAttrSrc($value) {
+			if (RendererConf::developing &&
+					!RendererValidators::isUrl($value)) {
+				throw new Exception($this->attrExc('src', $value));
+			} else {
+				$this->setAttr('src', $value);
+			}
+		}
+
+		/**
+		 * Adding a new inner tag
+		 * @param type $tag The adding inner tag
+		 * @return void
+		 **/
+		function addTag($tag) {
+			$this->addLines($tag->getLines());
+		}
+
+		/**
+		 * Adding a simple text. It works only if tag type is 2.
+		 * @param string $tag The adding inner tag
+		 * @return void
+		 **/
+		function addText($text) {
+			parent::addText($text);
+		}
+
+		/**
+		 * Output
+		 * @return string Outputs the tag as a string
+		 **/
+		function __toString() {
+			return parent::__toString();
+		}
+	}
+
+?>
