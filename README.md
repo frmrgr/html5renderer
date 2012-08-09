@@ -13,7 +13,7 @@ of HTML5 pages in PHP. Some of its features are:
 A good programming skill in HTML5 and PHP is required for using it, usage
 of an IDE (e.g NetBeans, Zend Studio) is recommended.
 
-Licence: [GNU GPL](http://www.gnu.org/copyleft/gpl.html), see also README.txt
+Licence: [GNU GPL](http://www.gnu.org/copyleft/gpl.html), see also README.md
 
 
 Usage
@@ -21,14 +21,16 @@ Usage
 
 The first is an inclusion command, so that index.php can recognize the library.
 
+<code>
 <?php
 	require_once 'lib/HTML5Renderer/tags.php';
 	$html = new Html();
-	//.....
+	//......
 	//All other tags and subtags
-	//.....
+	//...../
 	echo $html;//the sole 'echo' or 'print' is enough
 ?>
+</code>
 
 Each tag-class has constructor with two parameters type and value. Type has following settings:
 * 1: generates tag in the form '<tagname />',
