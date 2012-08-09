@@ -30,17 +30,19 @@ The first is an inclusion command, so that index.php can recognize the library.
       echo $html;//the sole 'echo' or 'print' is enough
     ?>
 
-Each tag-class has constructor with two parameters type and value. Type has following settings:
-* 1: generates tag in the form
+Each tag-class has constructor with two parameters type and value.
+Type has following settings:
 
-    <tagname />,
+1. generates tag in the form
 
-* 2: generates tag in the form
+    <tagname />
+
+2. generates tag in the form
 
     <tagname>
-    </tagname>,
+    </tagname>
 
-* 3: generates tag in the form
+3. generates tag in the form
 
     <tagname></tagname>
 
@@ -164,6 +166,7 @@ table with the HTML5Renderer:
       $html->setAttrXmlns('http://www.w3.org/1999/xhtml');
       $html->addTag($body);
       echo $html;//the sole echo
+    ?>
 
 Result: View source in your browser
 
