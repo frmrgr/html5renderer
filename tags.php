@@ -142,7 +142,7 @@
 		 *    <code>&lt;/a&gt;</code> or
 		 *    <code>&lt;a&gt;$value&lt;/a&gt;</code> correspondingly.
 		 **/
-		static function a($type = 2, $value = '') {
+		static function a($type = 3, $value = '') {
 			return new A($type, $value);
 		}
 
@@ -161,7 +161,7 @@
 		 *    <code>&lt;/abbr&gt;</code> or
 		 *    <code>&lt;abbr&gt;$value&lt;/abbr&gt;</code> correspondingly.
 		 **/
-		static function abbr($type = 2, $value = '') {
+		static function abbr($type = 3, $value = '') {
 			return new Abbr($type, $value);
 		}
 
@@ -199,7 +199,7 @@
 		 *    <code>&lt;/area&gt;</code> or
 		 *    <code>&lt;area&gt;$value&lt;/area&gt;</code> correspondingly.
 		 **/
-		static function area($type = 2, $value = '') {
+		static function area($type = 1, $value = '') {
 			return new Area($type, $value);
 		}
 
@@ -275,7 +275,7 @@
 		 *    <code>&lt;/b&gt;</code> or
 		 *    <code>&lt;b&gt;$value&lt;/b&gt;</code> correspondingly.
 		 **/
-		static function b($type = 2, $value = '') {
+		static function b($type = 3, $value = '') {
 			return new B($type, $value);
 		}
 
@@ -294,7 +294,7 @@
 		 *    <code>&lt;/base&gt;</code> or
 		 *    <code>&lt;base&gt;$value&lt;/base&gt;</code> correspondingly.
 		 **/
-		static function base($type = 2, $value = '') {
+		static function base($type = 1, $value = '') {
 			return new Base($type, $value);
 		}
 
@@ -313,7 +313,7 @@
 		 *    <code>&lt;/bdi&gt;</code> or
 		 *    <code>&lt;bdi&gt;$value&lt;/bdi&gt;</code> correspondingly.
 		 **/
-		static function bdi($type = 2, $value = '') {
+		static function bdi($type = 3, $value = '') {
 			return new Bdi($type, $value);
 		}
 
@@ -332,7 +332,7 @@
 		 *    <code>&lt;/bdo&gt;</code> or
 		 *    <code>&lt;bdo&gt;$value&lt;/bdo&gt;</code> correspondingly.
 		 **/
-		static function bdo($type = 2, $value = '') {
+		static function bdo($type = 3, $value = '') {
 			return new Bdo($type, $value);
 		}
 
@@ -389,7 +389,7 @@
 		 *    <code>&lt;/br&gt;</code> or
 		 *    <code>&lt;br&gt;$value&lt;/br&gt;</code> correspondingly.
 		 **/
-		static function br($type = 2, $value = '') {
+		static function br($type = 1, $value = '') {
 			return new Br($type, $value);
 		}
 
@@ -408,7 +408,7 @@
 		 *    <code>&lt;/button&gt;</code> or
 		 *    <code>&lt;button&gt;$value&lt;/button&gt;</code> correspondingly.
 		 **/
-		static function button($type = 2, $value = '') {
+		static function button($type = 3, $value = '') {
 			return new Button($type, $value);
 		}
 
@@ -427,7 +427,7 @@
 		 *    <code>&lt;/canvas&gt;</code> or
 		 *    <code>&lt;canvas&gt;$value&lt;/canvas&gt;</code> correspondingly.
 		 **/
-		static function canvas($type = 2, $value = '') {
+		static function canvas($type = 3, $value = '') {
 			return new Canvas($type, $value);
 		}
 
@@ -446,7 +446,7 @@
 		 *    <code>&lt;/caption&gt;</code> or
 		 *    <code>&lt;caption&gt;$value&lt;/caption&gt;</code> correspondingly.
 		 **/
-		static function caption($type = 2, $value = '') {
+		static function caption($type = 3, $value = '') {
 			return new Caption($type, $value);
 		}
 
@@ -465,7 +465,7 @@
 		 *    <code>&lt;/cite&gt;</code> or
 		 *    <code>&lt;cite&gt;$value&lt;/cite&gt;</code> correspondingly.
 		 **/
-		static function cite($type = 2, $value = '') {
+		static function cite($type = 3, $value = '') {
 			return new Cite($type, $value);
 		}
 
@@ -484,7 +484,7 @@
 		 *    <code>&lt;/code&gt;</code> or
 		 *    <code>&lt;code&gt;$value&lt;/code&gt;</code> correspondingly.
 		 **/
-		static function code($type = 2, $value = '') {
+		static function code($type = 3, $value = '') {
 			return new Code($type, $value);
 		}
 
@@ -503,7 +503,7 @@
 		 *    <code>&lt;/col&gt;</code> or
 		 *    <code>&lt;col&gt;$value&lt;/col&gt;</code> correspondingly.
 		 **/
-		static function col($type = 2, $value = '') {
+		static function col($type = 1, $value = '') {
 			return new Col($type, $value);
 		}
 
@@ -541,7 +541,7 @@
 		 *    <code>&lt;/command&gt;</code> or
 		 *    <code>&lt;command&gt;$value&lt;/command&gt;</code> correspondingly.
 		 **/
-		static function command($type = 2, $value = '') {
+		static function command($type = 3, $value = '') {
 			return new Command($type, $value);
 		}
 
@@ -579,7 +579,7 @@
 		 *    <code>&lt;/dd&gt;</code> or
 		 *    <code>&lt;dd&gt;$value&lt;/dd&gt;</code> correspondingly.
 		 **/
-		static function dd($type = 2, $value = '') {
+		static function dd($type = 3, $value = '') {
 			return new Dd($type, $value);
 		}
 
@@ -598,7 +598,7 @@
 		 *    <code>&lt;/del&gt;</code> or
 		 *    <code>&lt;del&gt;$value&lt;/del&gt;</code> correspondingly.
 		 **/
-		static function del($type = 2, $value = '') {
+		static function del($type = 3, $value = '') {
 			return new Del($type, $value);
 		}
 
@@ -636,7 +636,7 @@
 		 *    <code>&lt;/dfn&gt;</code> or
 		 *    <code>&lt;dfn&gt;$value&lt;/dfn&gt;</code> correspondingly.
 		 **/
-		static function dfn($type = 2, $value = '') {
+		static function dfn($type = 3, $value = '') {
 			return new Dfn($type, $value);
 		}
 
@@ -693,7 +693,7 @@
 		 *    <code>&lt;/dt&gt;</code> or
 		 *    <code>&lt;dt&gt;$value&lt;/dt&gt;</code> correspondingly.
 		 **/
-		static function dt($type = 2, $value = '') {
+		static function dt($type = 3, $value = '') {
 			return new Dt($type, $value);
 		}
 
@@ -712,7 +712,7 @@
 		 *    <code>&lt;/em&gt;</code> or
 		 *    <code>&lt;em&gt;$value&lt;/em&gt;</code> correspondingly.
 		 **/
-		static function em($type = 2, $value = '') {
+		static function em($type = 3, $value = '') {
 			return new Em($type, $value);
 		}
 
@@ -731,7 +731,7 @@
 		 *    <code>&lt;/embed&gt;</code> or
 		 *    <code>&lt;embed&gt;$value&lt;/embed&gt;</code> correspondingly.
 		 **/
-		static function embed($type = 2, $value = '') {
+		static function embed($type = 1, $value = '') {
 			return new Embed($type, $value);
 		}
 
@@ -769,7 +769,7 @@
 		 *    <code>&lt;/figcaption&gt;</code> or
 		 *    <code>&lt;figcaption&gt;$value&lt;/figcaption&gt;</code> correspondingly.
 		 **/
-		static function figcaption($type = 2, $value = '') {
+		static function figcaption($type = 3, $value = '') {
 			return new Figcaption($type, $value);
 		}
 
@@ -845,7 +845,7 @@
 		 *    <code>&lt;/h1&gt;</code> or
 		 *    <code>&lt;h1&gt;$value&lt;/h1&gt;</code> correspondingly.
 		 **/
-		static function h1($type = 2, $value = '') {
+		static function h1($type = 1, $value = '') {
 			return new H1($type, $value);
 		}
 
@@ -864,7 +864,7 @@
 		 *    <code>&lt;/h2&gt;</code> or
 		 *    <code>&lt;h2&gt;$value&lt;/h2&gt;</code> correspondingly.
 		 **/
-		static function h2($type = 2, $value = '') {
+		static function h2($type = 1, $value = '') {
 			return new H2($type, $value);
 		}
 
@@ -883,7 +883,7 @@
 		 *    <code>&lt;/h3&gt;</code> or
 		 *    <code>&lt;h3&gt;$value&lt;/h3&gt;</code> correspondingly.
 		 **/
-		static function h3($type = 2, $value = '') {
+		static function h3($type = 1, $value = '') {
 			return new H3($type, $value);
 		}
 
@@ -902,7 +902,7 @@
 		 *    <code>&lt;/h4&gt;</code> or
 		 *    <code>&lt;h4&gt;$value&lt;/h4&gt;</code> correspondingly.
 		 **/
-		static function h4($type = 2, $value = '') {
+		static function h4($type = 1, $value = '') {
 			return new H4($type, $value);
 		}
 
@@ -921,7 +921,7 @@
 		 *    <code>&lt;/h5&gt;</code> or
 		 *    <code>&lt;h5&gt;$value&lt;/h5&gt;</code> correspondingly.
 		 **/
-		static function h5($type = 2, $value = '') {
+		static function h5($type = 1, $value = '') {
 			return new H5($type, $value);
 		}
 
@@ -940,7 +940,7 @@
 		 *    <code>&lt;/h6&gt;</code> or
 		 *    <code>&lt;h6&gt;$value&lt;/h6&gt;</code> correspondingly.
 		 **/
-		static function h6($type = 2, $value = '') {
+		static function h6($type = 1, $value = '') {
 			return new H6($type, $value);
 		}
 
@@ -1016,7 +1016,7 @@
 		 *    <code>&lt;/hr&gt;</code> or
 		 *    <code>&lt;hr&gt;$value&lt;/hr&gt;</code> correspondingly.
 		 **/
-		static function hr($type = 2, $value = '') {
+		static function hr($type = 1, $value = '') {
 			return new Hr($type, $value);
 		}
 
@@ -1054,7 +1054,7 @@
 		 *    <code>&lt;/i&gt;</code> or
 		 *    <code>&lt;i&gt;$value&lt;/i&gt;</code> correspondingly.
 		 **/
-		static function i($type = 2, $value = '') {
+		static function i($type = 3, $value = '') {
 			return new I($type, $value);
 		}
 
@@ -1073,7 +1073,7 @@
 		 *    <code>&lt;/iframe&gt;</code> or
 		 *    <code>&lt;iframe&gt;$value&lt;/iframe&gt;</code> correspondingly.
 		 **/
-		static function iframe($type = 2, $value = '') {
+		static function iframe($type = 3, $value = '') {
 			return new Iframe($type, $value);
 		}
 
@@ -1092,7 +1092,7 @@
 		 *    <code>&lt;/img&gt;</code> or
 		 *    <code>&lt;img&gt;$value&lt;/img&gt;</code> correspondingly.
 		 **/
-		static function img($type = 2, $value = '') {
+		static function img($type = 1, $value = '') {
 			return new Img($type, $value);
 		}
 
@@ -1111,7 +1111,7 @@
 		 *    <code>&lt;/input&gt;</code> or
 		 *    <code>&lt;input&gt;$value&lt;/input&gt;</code> correspondingly.
 		 **/
-		static function input($type = 2, $value = '') {
+		static function input($type = 1, $value = '') {
 			return new Input($type, $value);
 		}
 
@@ -1130,7 +1130,7 @@
 		 *    <code>&lt;/ins&gt;</code> or
 		 *    <code>&lt;ins&gt;$value&lt;/ins&gt;</code> correspondingly.
 		 **/
-		static function ins($type = 2, $value = '') {
+		static function ins($type = 3, $value = '') {
 			return new Ins($type, $value);
 		}
 
@@ -1149,7 +1149,7 @@
 		 *    <code>&lt;/keygen&gt;</code> or
 		 *    <code>&lt;keygen&gt;$value&lt;/keygen&gt;</code> correspondingly.
 		 **/
-		static function keygen($type = 2, $value = '') {
+		static function keygen($type = 1, $value = '') {
 			return new Keygen($type, $value);
 		}
 
@@ -1168,7 +1168,7 @@
 		 *    <code>&lt;/kbd&gt;</code> or
 		 *    <code>&lt;kbd&gt;$value&lt;/kbd&gt;</code> correspondingly.
 		 **/
-		static function kbd($type = 2, $value = '') {
+		static function kbd($type = 3, $value = '') {
 			return new Kbd($type, $value);
 		}
 
@@ -1187,7 +1187,7 @@
 		 *    <code>&lt;/label&gt;</code> or
 		 *    <code>&lt;label&gt;$value&lt;/label&gt;</code> correspondingly.
 		 **/
-		static function label($type = 2, $value = '') {
+		static function label($type = 3, $value = '') {
 			return new Label($type, $value);
 		}
 
@@ -1206,7 +1206,7 @@
 		 *    <code>&lt;/legend&gt;</code> or
 		 *    <code>&lt;legend&gt;$value&lt;/legend&gt;</code> correspondingly.
 		 **/
-		static function legend($type = 2, $value = '') {
+		static function legend($type = 3, $value = '') {
 			return new Legend($type, $value);
 		}
 
@@ -1225,7 +1225,7 @@
 		 *    <code>&lt;/li&gt;</code> or
 		 *    <code>&lt;li&gt;$value&lt;/li&gt;</code> correspondingly.
 		 **/
-		static function li($type = 2, $value = '') {
+		static function li($type = 3, $value = '') {
 			return new Li($type, $value);
 		}
 
@@ -1244,7 +1244,7 @@
 		 *    <code>&lt;/link&gt;</code> or
 		 *    <code>&lt;link&gt;$value&lt;/link&gt;</code> correspondingly.
 		 **/
-		static function link($type = 2, $value = '') {
+		static function link($type = 1, $value = '') {
 			return new Link($type, $value);
 		}
 
@@ -1282,7 +1282,7 @@
 		 *    <code>&lt;/mark&gt;</code> or
 		 *    <code>&lt;mark&gt;$value&lt;/mark&gt;</code> correspondingly.
 		 **/
-		static function mark($type = 2, $value = '') {
+		static function mark($type = 3, $value = '') {
 			return new Mark($type, $value);
 		}
 
@@ -1320,7 +1320,7 @@
 		 *    <code>&lt;/meta&gt;</code> or
 		 *    <code>&lt;meta&gt;$value&lt;/meta&gt;</code> correspondingly.
 		 **/
-		static function meta($type = 2, $value = '') {
+		static function meta($type = 1, $value = '') {
 			return new Meta($type, $value);
 		}
 
@@ -1339,7 +1339,7 @@
 		 *    <code>&lt;/meter&gt;</code> or
 		 *    <code>&lt;meter&gt;$value&lt;/meter&gt;</code> correspondingly.
 		 **/
-		static function meter($type = 2, $value = '') {
+		static function meter($type = 3, $value = '') {
 			return new Meter($type, $value);
 		}
 
@@ -1377,7 +1377,7 @@
 		 *    <code>&lt;/noscript&gt;</code> or
 		 *    <code>&lt;noscript&gt;$value&lt;/noscript&gt;</code> correspondingly.
 		 **/
-		static function noscript($type = 2, $value = '') {
+		static function noscript($type = 3, $value = '') {
 			return new Noscript($type, $value);
 		}
 
@@ -1396,7 +1396,7 @@
 		 *    <code>&lt;/object&gt;</code> or
 		 *    <code>&lt;object&gt;$value&lt;/object&gt;</code> correspondingly.
 		 **/
-		static function object($type = 2, $value = '') {
+		static function object($type = 3, $value = '') {
 			return new Object($type, $value);
 		}
 
@@ -1453,7 +1453,7 @@
 		 *    <code>&lt;/option&gt;</code> or
 		 *    <code>&lt;option&gt;$value&lt;/option&gt;</code> correspondingly.
 		 **/
-		static function option($type = 2, $value = '') {
+		static function option($type = 3, $value = '') {
 			return new Option($type, $value);
 		}
 
@@ -1472,7 +1472,7 @@
 		 *    <code>&lt;/output&gt;</code> or
 		 *    <code>&lt;output&gt;$value&lt;/output&gt;</code> correspondingly.
 		 **/
-		static function output($type = 2, $value = '') {
+		static function output($type = 3, $value = '') {
 			return new Output($type, $value);
 		}
 
@@ -1510,7 +1510,7 @@
 		 *    <code>&lt;/param&gt;</code> or
 		 *    <code>&lt;param&gt;$value&lt;/param&gt;</code> correspondingly.
 		 **/
-		static function param($type = 2, $value = '') {
+		static function param($type = 1, $value = '') {
 			return new Param($type, $value);
 		}
 
@@ -1548,7 +1548,7 @@
 		 *    <code>&lt;/progress&gt;</code> or
 		 *    <code>&lt;progress&gt;$value&lt;/progress&gt;</code> correspondingly.
 		 **/
-		static function progress($type = 2, $value = '') {
+		static function progress($type = 3, $value = '') {
 			return new Progress($type, $value);
 		}
 
@@ -1643,7 +1643,7 @@
 		 *    <code>&lt;/s&gt;</code> or
 		 *    <code>&lt;s&gt;$value&lt;/s&gt;</code> correspondingly.
 		 **/
-		static function s($type = 2, $value = '') {
+		static function s($type = 3, $value = '') {
 			return new S($type, $value);
 		}
 
@@ -1662,7 +1662,7 @@
 		 *    <code>&lt;/samp&gt;</code> or
 		 *    <code>&lt;samp&gt;$value&lt;/samp&gt;</code> correspondingly.
 		 **/
-		static function samp($type = 2, $value = '') {
+		static function samp($type = 3, $value = '') {
 			return new Samp($type, $value);
 		}
 
@@ -1757,7 +1757,7 @@
 		 *    <code>&lt;/source&gt;</code> or
 		 *    <code>&lt;source&gt;$value&lt;/source&gt;</code> correspondingly.
 		 **/
-		static function source($type = 2, $value = '') {
+		static function source($type = 1, $value = '') {
 			return new Source($type, $value);
 		}
 
@@ -1776,7 +1776,7 @@
 		 *    <code>&lt;/span&gt;</code> or
 		 *    <code>&lt;span&gt;$value&lt;/span&gt;</code> correspondingly.
 		 **/
-		static function span($type = 2, $value = '') {
+		static function span($type = 3, $value = '') {
 			return new Span($type, $value);
 		}
 
@@ -1795,7 +1795,7 @@
 		 *    <code>&lt;/strong&gt;</code> or
 		 *    <code>&lt;strong&gt;$value&lt;/strong&gt;</code> correspondingly.
 		 **/
-		static function strong($type = 2, $value = '') {
+		static function strong($type = 3, $value = '') {
 			return new Strong($type, $value);
 		}
 
@@ -1833,7 +1833,7 @@
 		 *    <code>&lt;/sub&gt;</code> or
 		 *    <code>&lt;sub&gt;$value&lt;/sub&gt;</code> correspondingly.
 		 **/
-		static function sub($type = 2, $value = '') {
+		static function sub($type = 3, $value = '') {
 			return new Sub($type, $value);
 		}
 
@@ -1871,7 +1871,7 @@
 		 *    <code>&lt;/sup&gt;</code> or
 		 *    <code>&lt;sup&gt;$value&lt;/sup&gt;</code> correspondingly.
 		 **/
-		static function sup($type = 2, $value = '') {
+		static function sup($type = 3, $value = '') {
 			return new Sup($type, $value);
 		}
 
@@ -1928,7 +1928,7 @@
 		 *    <code>&lt;/td&gt;</code> or
 		 *    <code>&lt;td&gt;$value&lt;/td&gt;</code> correspondingly.
 		 **/
-		static function td($type = 2, $value = '') {
+		static function td($type = 3, $value = '') {
 			return new Td($type, $value);
 		}
 
@@ -1947,7 +1947,7 @@
 		 *    <code>&lt;/textarea&gt;</code> or
 		 *    <code>&lt;textarea&gt;$value&lt;/textarea&gt;</code> correspondingly.
 		 **/
-		static function textarea($type = 2, $value = '') {
+		static function textarea($type = 3, $value = '') {
 			return new Textarea($type, $value);
 		}
 
@@ -1985,7 +1985,7 @@
 		 *    <code>&lt;/th&gt;</code> or
 		 *    <code>&lt;th&gt;$value&lt;/th&gt;</code> correspondingly.
 		 **/
-		static function th($type = 2, $value = '') {
+		static function th($type = 3, $value = '') {
 			return new Th($type, $value);
 		}
 
@@ -2023,7 +2023,7 @@
 		 *    <code>&lt;/time&gt;</code> or
 		 *    <code>&lt;time&gt;$value&lt;/time&gt;</code> correspondingly.
 		 **/
-		static function time($type = 2, $value = '') {
+		static function time($type = 3, $value = '') {
 			return new Time($type, $value);
 		}
 
@@ -2042,7 +2042,7 @@
 		 *    <code>&lt;/title&gt;</code> or
 		 *    <code>&lt;title&gt;$value&lt;/title&gt;</code> correspondingly.
 		 **/
-		static function title($type = 2, $value = '') {
+		static function title($type = 3, $value = '') {
 			return new Title($type, $value);
 		}
 
@@ -2080,7 +2080,7 @@
 		 *    <code>&lt;/track&gt;</code> or
 		 *    <code>&lt;track&gt;$value&lt;/track&gt;</code> correspondingly.
 		 **/
-		static function track($type = 2, $value = '') {
+		static function track($type = 1, $value = '') {
 			return new Track($type, $value);
 		}
 
@@ -2099,7 +2099,7 @@
 		 *    <code>&lt;/u&gt;</code> or
 		 *    <code>&lt;u&gt;$value&lt;/u&gt;</code> correspondingly.
 		 **/
-		static function u($type = 2, $value = '') {
+		static function u($type = 3, $value = '') {
 			return new U($type, $value);
 		}
 
@@ -2137,7 +2137,7 @@
 		 *    <code>&lt;/var&gt;</code> or
 		 *    <code>&lt;var&gt;$value&lt;/var&gt;</code> correspondingly.
 		 **/
-		static function var_($type = 2, $value = '') {
+		static function var_($type = 3, $value = '') {
 			return new Var_($type, $value);
 		}
 
@@ -2175,7 +2175,7 @@
 		 *    <code>&lt;/wbr&gt;</code> or
 		 *    <code>&lt;wbr&gt;$value&lt;/wbr&gt;</code> correspondingly.
 		 **/
-		static function wbr($type = 2, $value = '') {
+		static function wbr($type = 3, $value = '') {
 			return new Wbr($type, $value);
 		}
 
