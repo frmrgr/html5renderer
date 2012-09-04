@@ -28,11 +28,20 @@
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Kbd
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

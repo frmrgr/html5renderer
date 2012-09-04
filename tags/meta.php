@@ -30,74 +30,86 @@
 		 * Attribute charset
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meta
 		 **/
 		function setAttrCharset($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isCharacterSet($value)) {
 				throw new Exception($this->attrExc('charset', $value));
 			} else {
 				$this->setAttr('charset', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute content
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meta
 		 **/
 		function setAttrContent($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('content', $value));
 			} else {
 				$this->setAttr('content', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute http-equiv
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"content-type"
-		 *        , "default-style", "refresh"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"content-type",
+		 *        "default-style", "refresh" }
+		 * @return Meta
 		 **/
 		function setAttrHttpEquiv($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('content-type', 'default-style'
-							, 'refresh'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('content-type', 'default-style',
+							'refresh'))) {
 				throw new Exception($this->attrExc('http-equiv', $value));
 			} else {
 				$this->setAttr('http-equiv', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute name
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"application-name"
-		 *        , "author", "description", "generator", "keywords"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"application-name",
+		 *        "author", "description", "generator", "keywords"}
+		 * @return Meta
 		 **/
 		function setAttrName($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('application-name', 'author'
-							, 'description', 'generator', 'keywords'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('application-name', 'author',
+							'description', 'generator', 'keywords'))) {
 				throw new Exception($this->attrExc('name', $value));
 			} else {
 				$this->setAttr('name', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Meta
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

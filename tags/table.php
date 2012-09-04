@@ -29,26 +29,36 @@
 		/**
 		 * Attribute border
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {""""
-		 *        , "1"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"""",
+		 *        "1" }
+		 * @return Table
 		 **/
 		function setAttrBorder($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('""', '1'))) {
 				throw new Exception($this->attrExc('border', $value));
 			} else {
 				$this->setAttr('border', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Table
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

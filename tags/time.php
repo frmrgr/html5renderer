@@ -30,40 +30,50 @@
 		 * Attribute datetime
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Time
 		 **/
 		function setAttrDatetime($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isDatetime($value)) {
 				throw new Exception($this->attrExc('datetime', $value));
 			} else {
 				$this->setAttr('datetime', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute pubdate
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"pubdate"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"pubdate"}
+		 * @return Time
 		 **/
 		function setAttrPubdate($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('pubdate'))) {
 				throw new Exception($this->attrExc('pubdate', $value));
 			} else {
 				$this->setAttr('pubdate', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Time
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

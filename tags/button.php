@@ -29,186 +29,205 @@
 		/**
 		 * Attribute autofocus
 		 *  - Warning Not supported in Internet Explorer and Opera.
-		 * @param string $value value of the attribute in set {"autofocus"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"autofocus",
+		 *        "" }
+		 * @return Button
 		 **/
 		function setAttrAutofocus($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('autofocus', ''))) {
 				throw new Exception($this->attrExc('autofocus', $value));
 			} else {
 				$this->setAttr('autofocus', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute disabled
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"disabled"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"disabled",
+		 *        "" }
+		 * @return Button
 		 **/
 		function setAttrDisabled($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('disabled', ''))) {
 				throw new Exception($this->attrExc('disabled', $value));
 			} else {
 				$this->setAttr('disabled', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute form
 		 *  - Warning Not supported in Internet Explorer.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Button
 		 **/
 		function setAttrForm($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isFormId($value)) {
 				throw new Exception($this->attrExc('form', $value));
 			} else {
 				$this->setAttr('form', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute formaction
 		 *  - Warning Not supported in Internet Explorer.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Button
 		 **/
 		function setAttrFormaction($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('formaction', $value));
 			} else {
 				$this->setAttr('formaction', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute formenctype
 		 *  - Warning Not supported in Internet Explorer, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"application/x-www-form-urlencoded"
-		 *        , "multipart/form-data", "text/plain"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"application/x-www-form-urlencoded",
+		 *        "multipart/form-data", "text/plain" }
+		 * @return Button
 		 **/
 		function setAttrFormenctype($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('application/x-www-form-urlencoded', 'multipart/form-data'
-							, 'text/plain'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('application/x-www-form-urlencoded', 'multipart/form-data',
+							'text/plain'))) {
 				throw new Exception($this->attrExc('formenctype', $value));
 			} else {
 				$this->setAttr('formenctype', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute formmethod
 		 *  - Warning Not supported in Internet Explorer.
-		 * @param string $value value of the attribute in set {"get"
-		 *        , "post"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"get",
+		 *        "post" }
+		 * @return Button
 		 **/
 		function setAttrFormmethod($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('get', 'post'))) {
 				throw new Exception($this->attrExc('formmethod', $value));
 			} else {
 				$this->setAttr('formmethod', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute formnovalidate
 		 *  - Warning Not supported in Internet Explorer and Safari.
-		 * @param string $value value of the attribute in set {"formnovalidate"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"formnovalidate",
+		 *        "" }
+		 * @return Button
 		 **/
 		function setAttrFormnovalidate($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('formnovalidate', ''))) {
 				throw new Exception($this->attrExc('formnovalidate', $value));
 			} else {
 				$this->setAttr('formnovalidate', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute formtarget
 		 *  - Warning Not supported in Internet Explorer.
-		 * @param string $value value of the attribute in set {"_blank"
-		 *        , "_self", "_parent", "_top", "framename"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"_blank",
+		 *        "_self", "_parent", "_top", "framename"}
+		 * @return Button
 		 **/
 		function setAttrFormtarget($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('_blank', '_self'
-							, '_parent', '_top', 'framename'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('_blank', '_self',
+							'_parent', '_top', 'framename'))) {
 				throw new Exception($this->attrExc('formtarget', $value));
 			} else {
 				$this->setAttr('formtarget', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute name
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Button
 		 **/
 		function setAttrName($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isName($value)) {
 				throw new Exception($this->attrExc('name', $value));
 			} else {
 				$this->setAttr('name', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute type
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"button"
-		 *        , "reset", "submit "}
-		 * @return void
+		 * @param string $value value of the attribute in set {"button",
+		 *        "reset", "submit " }
+		 * @return Button
 		 **/
 		function setAttrType($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('button', 'reset'
-							, 'submit '))) {
+			if (H5R_DEV &&
+					!in_array($value, array('button', 'reset',
+							'submit '))) {
 				throw new Exception($this->attrExc('type', $value));
 			} else {
 				$this->setAttr('type', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute value
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Button
 		 **/
 		function setAttrValue($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('value', $value));
 			} else {
 				$this->setAttr('value', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Button
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

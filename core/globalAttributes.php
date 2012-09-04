@@ -10,30 +10,37 @@ class GlobalAttributes extends Renderer {
 	/**
 	 * Attribute accesskey
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrAccesskey($value) {
 		$this->setAttr('accesskey', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute class
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrClass($value) {
 		$this->setAttr('class', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute contenteditable
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrContenteditable($value) {
 		$this->setAttr('contenteditable', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute contextmenu
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrContextmenu($value) {
 		if (RendererConf::developing && !in_array($value, 
@@ -42,11 +49,13 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('contextmenu', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute dir
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrDir($value) {
 		if (RendererConf::developing && 
@@ -55,11 +64,13 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('dir', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute draggable
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrDraggable($value) {
 		if (RendererConf::developing && 
@@ -68,11 +79,13 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('draggable', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute dropzone
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrDropzone($value) {
 		if (RendererConf::developing && 
@@ -81,11 +94,13 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('dropzone', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute hidden
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrHidden($value) {
 		if (RendererConf::developing && 
@@ -94,19 +109,23 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('hidden', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute id
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrId($value) {
 		$this->setAttr('id', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute lang
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrLang($value) {
 		if (RendererConf::developing && 
@@ -115,11 +134,13 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('lang', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute spellcheck
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrSpellcheck($value) {
 		if (RendererConf::developing && 
@@ -128,19 +149,23 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('spellcheck', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute style
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrStyle($value) {
 		$this->setAttr('style', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute tabindex
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	public function attrTabindex($value) {
 		$this->attributes ['tabindex'] = $value;
@@ -150,14 +175,17 @@ class GlobalAttributes extends Renderer {
 		} else {
 			$this->setAttr('tabindex', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute title
 	 * @param string $value value of the attribute
+	 * @return GlobalAttributes
 	 */
 	function setAttrTitle($value) {
 		$this->setAttr('title', $value);
+		return $this;
 	}
 
 }

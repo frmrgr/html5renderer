@@ -22,6 +22,7 @@ Usage
 The first is an inclusion command, so that index.php can recognize the library.
 
     <?php
+      require_once 'config.php';
       require_once 'lib/HTML5Renderer/tags.php';
       $html = new Html();
       //.....
@@ -30,7 +31,31 @@ The first is an inclusion command, so that index.php can recognize the library.
       echo $html;//the sole 'echo' or 'print' is enough
     ?>
 
-Each tag-class has constructor with two parameters type and value.
+File config.php has to contains at least lines
+
+    <?php
+      /**
+       * Is it for developing, setting that it shows errors of wrong attribute values
+       * @var bool is developing version 
+       */
+      define('H5R_DEV', true);
+
+      /**
+       * Symbol for setting a stairs (line's beginning) of generating HTML5 code for code alignment
+       * "\t" or " " or "  " or  "   " or .. are advisable.
+       */
+      define('H5R_STEP', "   ");
+
+      /**
+       * Setting into one line if it's 'true' -  remove step symbols from 
+       * lines' beginnings and new lines, that source code looks like
+       * "<!DOCTYPE HTML><html><head><title>My Homepage</title></head><body></body></html>"
+       */
+      define('H5R_ONELINE', false);
+    ?>
+
+
+Each tag-class has constructor with two parameters type, value, condition and contition type:
 Type has following settings
 
     1 - <tagname />
@@ -38,7 +63,7 @@ Type has following settings
         </tagname>
     3 - <tagname></tagname>
 
-and value works only if type is 2 or 3 and generates in the form
+Value works only if type is 2 or 3 and generates in the form
 
     <tagname>value</tagname>
 
@@ -50,15 +75,39 @@ and value works only if type is 2 or 3 and generates in the form
 
 correspondingly.
 
+Condition is a string like "IE", "!IE", etc.
+
+ConditionType is number (default=1):
+
+    0:
+       <![if condition]>
+          ...
+       <![endif]>
+    1:
+       <!--[if condition]>
+          ...
+       <![endif]-->
+    2:
+       <!--[if condition]>-->
+          ...
+       <!--<![endif]-->
+    3:
+       <!--[if condition]><!-->
+          ...
+       <!--<![endif]-->
+
+TODO: tingimuslaused
+
 Examples
 --------
 
 1.
 
     <?php
-      require_once 'lib/HTML5Renderer/tags.php'; // includes the PHP plugin
-      $html = Tags::html(); //defines html-tag
-      echo $html;
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php'; // includes the PHP plugin
+        $html = Tags::html(); //defines html-tag
+        echo $html;
     ?>
 
 Result:
@@ -70,14 +119,15 @@ Result:
 2.
 
     <?php
-      require_once 'lib/HTML5Renderer/tags.php';
-      $head = Tags::head();
-      $head->addTag(Tags::title(3,"My First Homepage"));
-      $body = Tags::body();
-      $html = Tags::html(2,$head);
-      $html->setAttrXmlns('http://www.w3.org/1999/xhtml');
-      $html->addTag($body);
-      echo $html;
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php';
+        $head = Tags::head();
+        $head->addTag(Tags::title(3,"My First Homepage"));
+        $body = Tags::body();
+        $html = Tags::html(2,$head);
+        $html->setAttrXmlns('http://www.w3.org/1999/xhtml');
+        $html->addTag($body);
+        echo $html;
     ?>
 
 Result:
@@ -91,6 +141,62 @@ Result:
       </body>
     </html>
 
+For the same result we can use also chains of methods:
+
+    <?php
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php';
+        $head = Tags::head()->addTag(Tags::title(3,"My First Homepage"));
+        echo Tags::html(2,$head)->addTag(Tags::body())->setAttrXmlns('http://www.w3.org/1999/xhtml');
+    ?>
+
+or
+
+    <?php
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php';
+        echo Tags::html(2,Tags::head()
+                ->addTag(Tags::title(3,"My First Homepage")))
+            ->addTag(Tags::body())
+            ->setAttrXmlns('http://www.w3.org/1999/xhtml');
+    ?>
+
+.. and we can add the code else, e.g to recognize browsers:
+
+    <?php
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php';
+        echo Tags::html(2,Tags::head()
+                ->addTag(Tags::title(3,"My First Homepage"))
+            )->addTag(Tags::body()
+                ->addTag(Tags::h1(3,"My First Homepage"))
+                //<!--[if IE]>..<![endif]-->
+                ->addTag(Tags::h2(3,"Welcome to Internet Explorer"),"IE")
+                //<!--[if !IE]>--> ... <!--<![endif]-->
+                ->addTag(Tags::h2(3,"Your browser isn't Internet Explorer"),"!IE",2)
+                )->setAttrXmlns('http://www.w3.org/1999/xhtml');
+    ?>
+
+that results
+
+    <?php
+      <!DOCTYPE HTML>
+      <html xmlns="http://www.w3.org/1999/xhtml">
+         <head>
+            <title>My First Homepage</title>
+         </head>
+         <body>
+            <h1>My First Homepage</h1>
+            <!--[if IE]>
+               <h2>Welcome to Internet Explorer</h2>
+            <![endif]-->
+            <!--[if !IE]>-->
+               <h2>Your browser isn't Internet Explorer</h2>
+            <!--<![endif]-->
+         </body>
+      </html>
+    ?>
+
 The next is a bigger example, showing how to make a multiplication
 table with the HTML5Renderer:
 
@@ -98,66 +204,56 @@ table with the HTML5Renderer:
 3.
 
     <?php
-      require_once 'lib/HTML5Renderer/tags.php';
+        require_once 'config.php';
+        require_once 'lib/HTML5Renderer/tags.php';
 
-      $head = Tags::head();
-      $head->addTag(Tags::title(3,"My First Homepage"));
+        //<meta content="text/html" http-equiv="content-type" charset="UTF-8" />
+        $head = Tags::head();
+        $head->addTag(Tags::title(3,"My First Homepage"))
+            ->addTag(Tags::meta(1)
+                ->setAttrContent("text/html")
+                ->setAttrHttpEquiv('content-type')
+                ->setAttrCharset('UTF-8'));
 
-      //<meta content="text/html" http-equiv="content-type" charset="UTF-8" />
-      $meta = Tags::meta();
-      $meta->setAttrContent("text/html");
-      $meta->setAttrHttpEquiv('content-type');
-      $meta->setAttrCharset('UTF-8');
-      $head->addTag($meta);
+        $table = Tags::table();//define table
+        // table to center, and border color
+        $table->setAttrStyle("width:70%;margin-left:15%;margin-right:15%;border-color:yellow");
+        $table->setAttrBorder(1);//setting a border size
 
-      $body = Tags::body(2,"");
-      //setting style of body
-      $body->setAttrStyle("background-color:green;color:yellow;");
-
-      $h1 = Tags::h1(2,"Multiplication table");
-      $h1->setAttrStyle("text-align:center");//style="text-align:center"
-
-      $table = Tags::table();//define table
-      // table to center, and border color
-      $table->setAttrStyle("width:70%;margin-left:15%;margin-right:15%;border-color:yellow");
-      $table->setAttrBorder(1);//setting a border size
-
-      //making a row with headers
-      $tr1 = Tags::tr();//defines a table row
-      for($i = 0; $i <= 10; $i++) {
-        $td = Tags::td(2);
-        $b = Tags::b(3, $i==0 ? "X" : $i);//tag <b> width value
-        $td = Tags::td(2);
-        $td->setAttrStyle("text-align:center");//style="text-align:center"
-        $td->addTag($b);
-        $tr1->addTag($td);//cell to table row
-      }
-      $table->addTag($tr1);//the first row to the table
-
-      for($i = 1; $i <= 10; $i++) {
-        $tr = Tags::tr();
-        $b = Tags::b(3,$i);
-        $td = Tags::td(2);
-        $td->setAttrStyle("text-align:center");//style="text-align:center"
-        $td->addTag($b);
-        $tr->addTag($td);//the first cell is a header of column
-        for($j = 1; $j <= 10; $j++) {
-          $td = Tags::td(3, $i*$j);//other cells get a multiplication value
-          $td->setAttrColspan(1);//colspan="1"
-          $td->setAttrStyle("text-align:center");//style="text-align:center"
-          $tr->addTag($td);//cell to table row
+        //making a row with headers
+        $tr1 = Tags::tr();//defines a table row
+        for($i = 0; $i <= 10; $i++) {
+            $tr1->addTag(Tags::td(2)
+                ->setAttrStyle("text-align:center")
+                ->addTag(Tags::b(3, $i==0 ? "X" : $i))//tag <b> width value
+            );//cell to table row
         }
-        $table->addTag($tr);//row to table
-      }
+    $table->addTag($tr1);//the first row to the table
 
-      $body->addTag($h1);//page's header
-      $body->addTag($table);//multiplication's table
+        for($i = 1; $i <= 10; $i++) {
+            $td = Tags::td(2);
+            $td->setAttrStyle("text-align:center");//style="text-align:center"
+            $td->addTag(Tags::b(3,$i));
+            $tr = Tags::tr()->addTag($td);//the first cell is a header of column
+            for($j = 1; $j <= 10; $j++) {
+                $tr->addTag(Tags::td(3, $i*$j)//other cells get a multiplication value
+                    ->setAttrColspan(1)//colspan="1"
+                    ->setAttrStyle("text-align:center")//style="text-align:center"				  
+                );//cell to table row
+            }
+            $table->addTag($tr);//row to table
+        }
 
-      // the main tag html
-      $html = Tags::html(2,$head);
-      $html->setAttrXmlns('http://www.w3.org/1999/xhtml');
-      $html->addTag($body);
-      echo $html;//the sole echo
+        $body = Tags::body(2)->addTag(Tags::h1(2,"Multiplication table")//page's header
+                ->setAttrStyle("text-align:center")
+            )->addTag($table) //multiplication's table
+            //setting style of body
+            ->setAttrStyle("background-color:green;color:yellow;");
+
+        // the main tag html and the sole echo
+        echo Tags::html(2,$head)
+            ->setAttrXmlns('http://www.w3.org/1999/xhtml')
+            ->addTag($body);
     ?>
 
 Result: View source in your browser
@@ -182,3 +278,4 @@ Files of HTML5Renderer
       |  |rendererConf.php --- configurating to showing errors and setting alignment
       |  |tags.php --- including all files in the renderer
     index.php
+    conf.php

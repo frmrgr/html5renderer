@@ -29,104 +29,119 @@
 		/**
 		 * Attribute checked
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"checked"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"checked",
+		 *        "" }
+		 * @return Command
 		 **/
 		function setAttrChecked($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('checked', ''))) {
 				throw new Exception($this->attrExc('checked', $value));
 			} else {
 				$this->setAttr('checked', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute disabled
 		 *  - Warning Not supported in Mozilla Firefox, Opera, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"disabled"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"disabled",
+		 *        "" }
+		 * @return Command
 		 **/
 		function setAttrDisabled($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('disabled', ''))) {
 				throw new Exception($this->attrExc('disabled', $value));
 			} else {
 				$this->setAttr('disabled', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute icon
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Command
 		 **/
 		function setAttrIcon($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('icon', $value));
 			} else {
 				$this->setAttr('icon', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute label
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Command
 		 **/
 		function setAttrLabel($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('label', $value));
 			} else {
 				$this->setAttr('label', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute radiogroup
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Command
 		 **/
 		function setAttrRadiogroup($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isGroupname($value)) {
 				throw new Exception($this->attrExc('radiogroup', $value));
 			} else {
 				$this->setAttr('radiogroup', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute type
 		 *  - Warning Not supported in Mozilla Firefox, Opera, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"checkbox"
-		 *        , "command", "radio"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"checkbox",
+		 *        "command", "radio" }
+		 * @return Command
 		 **/
 		function setAttrType($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('checkbox', 'command'
-							, 'radio'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('checkbox', 'command',
+							'radio'))) {
 				throw new Exception($this->attrExc('type', $value));
 			} else {
 				$this->setAttr('type', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Command
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

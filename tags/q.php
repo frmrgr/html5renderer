@@ -30,33 +30,44 @@
 		 * Attribute cite
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Q
 		 **/
 		function setAttrCite($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('cite', $value));
 			} else {
 				$this->setAttr('cite', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Q
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**
 		 * Adding a simple text. It works only if tag type is 2.
 		 * @param string $tag The adding inner tag
-		 * @return void
+		 * @return Q
 		 **/
 		function addText($text) {
 			parent::addText($text);
+			return $this;
 		}
 
 		/**

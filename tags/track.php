@@ -29,89 +29,102 @@
 		/**
 		 * Attribute default
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"default"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"default",
+		 *        "" }
+		 * @return Track
 		 **/
 		function setAttrDefault($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('default', ''))) {
 				throw new Exception($this->attrExc('default', $value));
 			} else {
 				$this->setAttr('default', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute kind
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
-		 * @param string $value value of the attribute in set {"captions"
-		 *        , "chapters", "descriptions", "metadata", "subtitles"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"captions",
+		 *        "chapters", "descriptions", "metadata", "subtitles"}
+		 * @return Track
 		 **/
 		function setAttrKind($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('captions', 'chapters'
-							, 'descriptions', 'metadata', 'subtitles'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('captions', 'chapters',
+							'descriptions', 'metadata', 'subtitles'))) {
 				throw new Exception($this->attrExc('kind', $value));
 			} else {
 				$this->setAttr('kind', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute label
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Track
 		 **/
 		function setAttrLabel($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('label', $value));
 			} else {
 				$this->setAttr('label', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute src
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Track
 		 **/
 		function setAttrSrc($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('src', $value));
 			} else {
 				$this->setAttr('src', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute srclang
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Track
 		 **/
 		function setAttrSrclang($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isLanguageCode($value)) {
 				throw new Exception($this->attrExc('srclang', $value));
 			} else {
 				$this->setAttr('srclang', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Track
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

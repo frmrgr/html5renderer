@@ -30,114 +30,130 @@
 		 * Attribute form
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrForm($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isFormId($value)) {
 				throw new Exception($this->attrExc('form', $value));
 			} else {
 				$this->setAttr('form', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute high
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrHigh($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('high', $value));
 			} else {
 				$this->setAttr('high', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute low
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrLow($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('low', $value));
 			} else {
 				$this->setAttr('low', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute max
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrMax($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('max', $value));
 			} else {
 				$this->setAttr('max', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute min
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrMin($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('min', $value));
 			} else {
 				$this->setAttr('min', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute optimum
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrOptimum($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('optimum', $value));
 			} else {
 				$this->setAttr('optimum', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute value
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Meter
 		 **/
 		function setAttrValue($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('value', $value));
 			} else {
 				$this->setAttr('value', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Meter
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

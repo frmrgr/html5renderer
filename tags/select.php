@@ -29,103 +29,118 @@
 		/**
 		 * Attribute autofocus
 		 *  - Warning Not supported in Internet Explorer and Mozilla Firefox.
-		 * @param string $value value of the attribute in set {"autofocus"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"autofocus",
+		 *        "" }
+		 * @return Select
 		 **/
 		function setAttrAutofocus($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('autofocus', ''))) {
 				throw new Exception($this->attrExc('autofocus', $value));
 			} else {
 				$this->setAttr('autofocus', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute disabled
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"disabled"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"disabled",
+		 *        "" }
+		 * @return Select
 		 **/
 		function setAttrDisabled($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('disabled', ''))) {
 				throw new Exception($this->attrExc('disabled', $value));
 			} else {
 				$this->setAttr('disabled', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute form
 		 *  - Warning Not supported in Internet Explorer.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Select
 		 **/
 		function setAttrForm($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isFormId($value)) {
 				throw new Exception($this->attrExc('form', $value));
 			} else {
 				$this->setAttr('form', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute multiple
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"multiple"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"multiple",
+		 *        "" }
+		 * @return Select
 		 **/
 		function setAttrMultiple($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('multiple', ''))) {
 				throw new Exception($this->attrExc('multiple', $value));
 			} else {
 				$this->setAttr('multiple', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute name
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Select
 		 **/
 		function setAttrName($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('name', $value));
 			} else {
 				$this->setAttr('name', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute size
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Select
 		 **/
 		function setAttrSize($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('size', $value));
 			} else {
 				$this->setAttr('size', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Select
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

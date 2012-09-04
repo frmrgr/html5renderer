@@ -11,7 +11,6 @@
 		 * Initializes all tag's classes
 		 */
 		static function init() {
-			require_once 'rendererConf.php';
 			require_once 'core/rendererValidators.php';
 			require_once 'core/renderer.php';
 			require_once 'core/globalAttributes.php';

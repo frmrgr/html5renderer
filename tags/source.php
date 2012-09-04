@@ -30,54 +30,66 @@
 		 * Attribute media
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Source
 		 **/
 		function setAttrMedia($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isMediaQuery($value)) {
 				throw new Exception($this->attrExc('media', $value));
 			} else {
 				$this->setAttr('media', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute src
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Source
 		 **/
 		function setAttrSrc($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('src', $value));
 			} else {
 				$this->setAttr('src', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute type
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Source
 		 **/
 		function setAttrType($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isMimeType($value)) {
 				throw new Exception($this->attrExc('type', $value));
 			} else {
 				$this->setAttr('type', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Source
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

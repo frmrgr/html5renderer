@@ -29,72 +29,85 @@
 		/**
 		 * Attribute disabled
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"disabled"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"disabled",
+		 *        "" }
+		 * @return Option
 		 **/
 		function setAttrDisabled($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('disabled', ''))) {
 				throw new Exception($this->attrExc('disabled', $value));
 			} else {
 				$this->setAttr('disabled', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute label
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Option
 		 **/
 		function setAttrLabel($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('label', $value));
 			} else {
 				$this->setAttr('label', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute selected
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"selected"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"selected",
+		 *        "" }
+		 * @return Option
 		 **/
 		function setAttrSelected($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('selected', ''))) {
 				throw new Exception($this->attrExc('selected', $value));
 			} else {
 				$this->setAttr('selected', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute value
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Option
 		 **/
 		function setAttrValue($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isText($value)) {
 				throw new Exception($this->attrExc('value', $value));
 			} else {
 				$this->setAttr('value', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Option
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

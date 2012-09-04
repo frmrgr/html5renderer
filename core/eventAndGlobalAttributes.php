@@ -10,30 +10,37 @@ class EventAndGlobalAttributes extends EventAttributes {
 	/**
 	 * Attribute accesskey
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrAccesskey($value) {
 		$this->setAttr('accesskey', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute class
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrClass($value) {
 		$this->setAttr('class', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute contenteditable
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrContenteditable($value) {
 		$this->setAttr('contenteditable', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute contextmenu
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrContextmenu($value) {
 		if (RendererConf::developing && !in_array($value, 
@@ -42,11 +49,13 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('contextmenu', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute dir
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrDir($value) {
 		if (RendererConf::developing && 
@@ -55,11 +64,13 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('dir', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute draggable
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrDraggable($value) {
 		if (RendererConf::developing && 
@@ -68,11 +79,13 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('draggable', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute dropzone
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrDropzone($value) {
 		if (RendererConf::developing && 
@@ -81,11 +94,13 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('dropzone', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute hidden
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrHidden($value) {
 		if (RendererConf::developing && 
@@ -94,19 +109,23 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('hidden', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute id
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrId($value) {
 		$this->setAttr('id', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute lang
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrLang($value) {
 		if (RendererConf::developing && 
@@ -115,11 +134,13 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('lang', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute spellcheck
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrSpellcheck($value) {
 		if (RendererConf::developing && 
@@ -128,19 +149,23 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('spellcheck', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute style
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrStyle($value) {
 		$this->setAttr('style', $value);
+		return $this;
 	}
 
 	/**
 	 * Attribute tabindex
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	public function setAttrTabindex($value) {
 		$this->attributes ['tabindex'] = $value;
@@ -150,14 +175,17 @@ class EventAndGlobalAttributes extends EventAttributes {
 		} else {
 			$this->setAttr('tabindex', $value);
 		}
+		return $this;
 	}
 
 	/**
 	 * Attribute title
 	 * @param string $value value of the attribute
+	 * @return EventAndGlobalAttributes
 	 */
 	function setAttrTitle($value) {
 		$this->setAttr('title', $value);
+		return $this;
 	}
 }
 ?>

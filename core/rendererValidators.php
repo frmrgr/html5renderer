@@ -220,7 +220,7 @@ class RendererValidators {
 	 * @return bool is the value a correct url
 	 */
 	static function isUrl($value) {
-		return $value != "";
+		return filter_var($value, FILTER_VALIDATE_URL);
 	}
 
 	/**
@@ -260,15 +260,6 @@ class RendererValidators {
 	}
 
 	/**
-	 * Checking attribute challenge
-	 * @param string $value The attribute value
-	 * @return bool is the value a challenge
-	 */
-	static function isChallenge($value) {
-		$value != "";
-	}
-
-	/**
 	 * Checking attribute character_set
 	 * @param string $value The attribute value
 	 * @return bool is the value a correct character set
@@ -292,8 +283,6 @@ class RendererValidators {
 						"UTF-16"//
 				  ));
 	}
-
-
 
 	/**
 	 * Checking attribute coordinates

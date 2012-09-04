@@ -30,80 +30,94 @@
 		 * Attribute colspan
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Th
 		 **/
 		function setAttrColspan($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('colspan', $value));
 			} else {
 				$this->setAttr('colspan', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute headers
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Th
 		 **/
 		function setAttrHeaders($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isHeaderId($value)) {
 				throw new Exception($this->attrExc('headers', $value));
 			} else {
 				$this->setAttr('headers', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute rowspan
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Th
 		 **/
 		function setAttrRowspan($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('rowspan', $value));
 			} else {
 				$this->setAttr('rowspan', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute scope
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"col"
-		 *        , "colgroup", "row", "rowgroup"}
-		 * @return void
+		 * @param string $value value of the attribute in set {"col",
+		 *        "colgroup", "row", "rowgroup" }
+		 * @return Th
 		 **/
 		function setAttrScope($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('col', 'colgroup'
-							, 'row', 'rowgroup'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('col', 'colgroup',
+							'row', 'rowgroup'))) {
 				throw new Exception($this->attrExc('scope', $value));
 			} else {
 				$this->setAttr('scope', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Th
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**
 		 * Adding a simple text. It works only if tag type is 2.
 		 * @param string $tag The adding inner tag
-		 * @return void
+		 * @return Th
 		 **/
 		function addText($text) {
 			parent::addText($text);
+			return $this;
 		}
 
 		/**

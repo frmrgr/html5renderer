@@ -29,59 +29,70 @@
 		/**
 		 * Attribute reversed
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera and Safari.
-		 * @param string $value value of the attribute in set {"reversed"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"reversed",
+		 *        "" }
+		 * @return Ol
 		 **/
 		function setAttrReversed($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('reversed', ''))) {
 				throw new Exception($this->attrExc('reversed', $value));
 			} else {
 				$this->setAttr('reversed', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute start
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Ol
 		 **/
 		function setAttrStart($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isNumber($value)) {
 				throw new Exception($this->attrExc('start', $value));
 			} else {
 				$this->setAttr('start', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute type
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"1"
-		 *        , "A", "a", "I", "i"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"1",
+		 *        "A", "a", "I", "i"}
+		 * @return Ol
 		 **/
 		function setAttrType($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('1', 'A'
-							, 'a', 'I', 'i'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('1', 'A',
+							'a', 'I', 'i'))) {
 				throw new Exception($this->attrExc('type', $value));
 			} else {
 				$this->setAttr('type', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Ol
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

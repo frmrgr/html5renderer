@@ -30,110 +30,124 @@
 		 * Attribute href
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Link
 		 **/
 		function setAttrHref($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('href', $value));
 			} else {
 				$this->setAttr('href', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute hreflang
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Link
 		 **/
 		function setAttrHreflang($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isLanguageCode($value)) {
 				throw new Exception($this->attrExc('hreflang', $value));
 			} else {
 				$this->setAttr('hreflang', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute media
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Link
 		 **/
 		function setAttrMedia($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isMediaQuery($value)) {
 				throw new Exception($this->attrExc('media', $value));
 			} else {
 				$this->setAttr('media', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute rel
 		 * Supported by all known browsers.
-		 * @param string $value value of the attribute in set {"alternate"
-		 *        , "archives", "author", "bookmark", "external"
-		 *        , "first", "help", "icon", "last"
-		 *        , "licence", "next", "nofollow", "noreferrer"
-		 *        , "pingback", "prefetch", "prev", "search"
-		 *        , "sidebar", "stylesheet", "tag", "up"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"alternate",
+		 *        "archives", "author", "bookmark", "external",
+		 *        "first", "help", "icon", "last",
+		 *        "licence", "next", "nofollow", "noreferrer",
+		 *        "pingback", "prefetch", "prev", "search",
+		 *        "sidebar", "stylesheet", "tag", "up"}
+		 * @return Link
 		 **/
 		function setAttrRel($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('alternate', 'archives'
-							, 'author', 'bookmark', 'external', 'first'
-							, 'help', 'icon', 'last', 'licence'
-							, 'next', 'nofollow', 'noreferrer', 'pingback'
-							, 'prefetch', 'prev', 'search', 'sidebar'
-							, 'stylesheet', 'tag', 'up'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('alternate', 'archives',
+							'author', 'bookmark', 'external', 'first',
+							'help', 'icon', 'last', 'licence',
+							'next', 'nofollow', 'noreferrer', 'pingback',
+							'prefetch', 'prev', 'search', 'sidebar',
+							'stylesheet', 'tag', 'up'))) {
 				throw new Exception($this->attrExc('rel', $value));
 			} else {
 				$this->setAttr('rel', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute sizes
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Link
 		 **/
 		function setAttrSizes($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isSizes($value)) {
 				throw new Exception($this->attrExc('sizes', $value));
 			} else {
 				$this->setAttr('sizes', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute type
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Link
 		 **/
 		function setAttrType($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isMimeType($value)) {
 				throw new Exception($this->attrExc('type', $value));
 			} else {
 				$this->setAttr('type', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Link
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**

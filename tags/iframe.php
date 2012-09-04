@@ -30,118 +30,133 @@
 		 * Attribute height
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Iframe
 		 **/
 		function setAttrHeight($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isPixels($value)) {
 				throw new Exception($this->attrExc('height', $value));
 			} else {
 				$this->setAttr('height', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute name
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Iframe
 		 **/
 		function setAttrName($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isName($value)) {
 				throw new Exception($this->attrExc('name', $value));
 			} else {
 				$this->setAttr('name', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute sandbox
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox and Opera.
-		 * @param string $value value of the attribute in set {""""
-		 *        , "allow-forms", "allow-same-origin", "allow-scripts", "allow-top-navigation"
-		 *        }
-		 * @return void
+		 * @param string $value value of the attribute in set {"""",
+		 *        "allow-forms", "allow-same-origin", "allow-scripts", "allow-top-navigation"}
+		 * @return Iframe
 		 **/
 		function setAttrSandbox($value) {
-			if (RendererConf::developing &&
-					!in_array($value, array('""', 'allow-forms'
-							, 'allow-same-origin', 'allow-scripts', 'allow-top-navigation'))) {
+			if (H5R_DEV &&
+					!in_array($value, array('""', 'allow-forms',
+							'allow-same-origin', 'allow-scripts', 'allow-top-navigation'))) {
 				throw new Exception($this->attrExc('sandbox', $value));
 			} else {
 				$this->setAttr('sandbox', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute seamless
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera and Safari.
-		 * @param string $value value of the attribute in set {"seamless"
-		 *        , ""}
-		 * @return void
+		 * @param string $value value of the attribute in set {"seamless",
+		 *        "" }
+		 * @return Iframe
 		 **/
 		function setAttrSeamless($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!in_array($value, array('seamless', ''))) {
 				throw new Exception($this->attrExc('seamless', $value));
 			} else {
 				$this->setAttr('seamless', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute src
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Iframe
 		 **/
 		function setAttrSrc($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isUrl($value)) {
 				throw new Exception($this->attrExc('src', $value));
 			} else {
 				$this->setAttr('src', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute srcdoc
 		 *  - Warning Not supported in Internet Explorer, Mozilla Firefox, Opera, Google Ghrome and Safari.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Iframe
 		 **/
 		function setAttrSrcdoc($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isHtmlCode($value)) {
 				throw new Exception($this->attrExc('srcdoc', $value));
 			} else {
 				$this->setAttr('srcdoc', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Attribute width
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
-		 * @return void
+		 * @return Iframe
 		 **/
 		function setAttrWidth($value) {
-			if (RendererConf::developing &&
+			if (H5R_DEV &&
 					!RendererValidators::isPixels($value)) {
 				throw new Exception($this->attrExc('width', $value));
 			} else {
 				$this->setAttr('width', $value);
 			}
+			return $this;
 		}
 
 		/**
 		 * Adding a new inner tag
-		 * @param type $tag The adding inner tag
-		 * @return void
+		 * @param tag $tag The adding inner tag
+		 * @param string $condition around the $tag with the $condition
+		 *    '<!--[if '.$condition.']>'..'<![endif]-->'
+		 *    if $condition != '', default is ''
+		 * @param int $conditionType type of conditional (default=1):
+		 *   <code>0</code> - '<![if '.$condition.']>' html '<![endif]>'
+		 *   <code>1</code> - '<!--[if '.$condition.']>' html '<![endif]-->'
+		 *   <code>2</code> - '<!--[if '.$condition.']>-->' html '<!--<![endif]-->'
+		 *   <code>3</code> - '<!--[if '.$condition.']><!-->' html '<!--<![endif]-->'
+		 * @return Iframe
 		 **/
-		function addTag($tag) {
-			$this->addLines($tag->getLines());
+		function addTag($tag, $condition = '', $conditionType = 1) {
+			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
 		}
 
 		/**
