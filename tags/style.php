@@ -43,6 +43,14 @@
 		}
 
 		/**
+		 * Create a rule
+		 * @return CssRule
+		 **/
+		static function rule() {
+			return new CssRule();
+		}
+
+		/**
 		 * Attribute media
 		 * Supported by all known browsers.
 		 * @param string $value value of the attribute
@@ -90,6 +98,18 @@
 		 **/
 		function addTag($tag, $condition = '', $conditionType = 1) {
 			$this->addLines($tag->getLines(), $condition, $conditionType);
+			return $this;
+		}
+
+		/**
+		 * Adding a new rule
+		 * @param CssRule $rule The added rule
+		 * @return Style
+		 **/
+		function addRule($rule) {
+			$condition = '';
+			$conditionType = 1;
+			$this->addLines($rule->getLines(), $condition, $conditionType);
 			return $this;
 		}
 

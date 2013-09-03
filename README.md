@@ -258,6 +258,148 @@ table with the HTML5Renderer:
 
 Result: View source in your browser
 
+
+Now examples of how CSS rules work for style tag.
+Task: we need to generate a list of three elements which are yellow
+except for the red middle one.
+Solution:
+
+4.
+
+    <?php
+    
+            require "config.php";
+            require "d:/Cloud/GitHub/html5renderer/tags.php";
+            
+            $li1 = Tags::li(3, "First list element")->setAttr("id", "li1");
+            $li2 = Tags::li(3, "Second list element")->setAttr("class", "lmnt");
+            $li3 = Tags::li(3, "Third list element")->setAttr("data-num", "3");
+            
+            // Css generation part
+            $rule1 = Style::rule()->addTarget("body")
+                ->addDirectChild("ul")->addDirectChild("li");
+            $rule2 = $rule1->copy()->addPseudo("nth-child", 2)
+                ->addDeclaration("background-color", "red");
+            $rule1->addDeclaration("background-color", "yellow");
+            
+            echo Tags::html()->addTag(
+                    Tags::head()
+                    ->addTag(Tags::title(3,"My First Homepage"))
+                    ->addTag(Tags::style()
+                        ->addRule($rule1)->addRule($rule2)
+                    )
+                )->addTag(
+                Tags::body()
+                    ->addTag(Tags::ul()
+                        ->addTag($li1)
+                        ->addTag($li2)
+                        ->addTag($li3)
+                    )
+            )
+      
+    ?>
+
+This would result in:
+
+          <!DOCTYPE HTML>
+  <html>
+     <head>
+        <title>My First Homepage</title>
+        <style>
+           body > ul > li {
+              background-color: yellow;
+           }
+           body > ul > li:nth-child(2) {
+              background-color: red;
+           }
+        </style>
+     </head>
+     <body>
+        <ul>
+           <li id="li1">First list element</li>
+           <li class="lmnt">Second list element</li>
+           <li data-num="3">Third list element</li>
+        </ul>
+     </body>
+  </html>
+
+5.
+We can also pass tag object as target argument.
+If it has id attribute, it will become the only selector.
+Otherwise, 'tagname.class' will be extracted.
+So, three more ways to provide same design:
+
+5.1
+    $rule1 = Style::rule()->addTarget("ul")
+        ->addDescendant("li")->addDeclaration("background-color", "yellow");
+    $rule2 = Style::rule()->addTarget($li2)
+        ->addDeclaration("background-color",  "red");
+ 
+5.2   
+    //Will work for all li's because li3 has no id nor class
+    $rule1 = Style::rule()->addDeclaration("background-color", "red")
+        ->addTarget($li3);
+    $rule2 = Style::rule()->addDeclaration("background-color", "yellow")
+        ->addTarget($li1)->addTarget("li")->addAttribute("data-num", 3);
+      
+5.3
+    $rule1 = Style::rule()->addTarget($li1)
+        ->addNeighbor(".lmnt")->addDeclaration("background-color", "red");
+    $rule2 = Style::rule()->addTarget("ul")
+        ->addDeclaration("background-color", "yellow");
+
+Code for li's was:
+  <li id="li1">First list element</li>
+  <li class="lmnt">Second list element</li>
+  <li data-num="3">Third list element</li>
+
+These would produce following css codes respectively:
+
+5.1
+  ul li {
+      background-color: yellow;
+  }
+  li.lmnt {
+      background-color: red;
+  }
+
+5.2
+  li {
+      background-color: red;
+  }
+  #li1,
+  li[data-num='3'] {
+      background-color: yellow;
+  }
+
+5.3 Is sligtly different
+  #li1 ~ .lmnt {
+      background-color: red;
+  }
+  ul {
+      background-color: yellow;
+  }
+
+You may pass third 'true' argument to CssRule::addDeclaration method to
+automatically generate different css prefixes for declaration value:
+
+5.4
+
+    Style::rule()->addTarget(CssRule::ALL)
+        ->addDeclaration("background", "linear-gradient(test)", true);
+
+result
+
+  * {
+      background: -moz-linear-gradient(test);
+      background: -webkit-linear-gradient(test);
+      background: -ms-linear-gradient(test);
+      background: -o-linear-gradient(test);
+      background: linear-gradient(test);
+  }
+
+
+
 Files of HTML5Renderer
 ----------------------
 

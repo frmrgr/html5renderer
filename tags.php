@@ -16,6 +16,7 @@
 			require_once 'core/globalAttributes.php';
 			require_once 'core/eventAttributes.php';
 			require_once 'core/eventAndGlobalAttributes.php';
+			require_once 'core/cssRule.php';
 
 			require_once 'tags/a.php';
 			require_once 'tags/abbr.php';
