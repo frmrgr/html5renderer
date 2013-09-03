@@ -301,27 +301,27 @@ Solution:
 
 This would result in:
 
-          <!DOCTYPE HTML>
-  <html>
-     <head>
-        <title>My First Homepage</title>
-        <style>
-           body > ul > li {
-              background-color: yellow;
-           }
-           body > ul > li:nth-child(2) {
-              background-color: red;
-           }
-        </style>
-     </head>
-     <body>
-        <ul>
-           <li id="li1">First list element</li>
-           <li class="lmnt">Second list element</li>
-           <li data-num="3">Third list element</li>
-        </ul>
-     </body>
-  </html>
+    <!DOCTYPE HTML>
+    <html>
+       <head>
+          <title>My First Homepage</title>
+          <style>
+             body > ul > li {
+                background-color: yellow;
+             }
+             body > ul > li:nth-child(2) {
+                background-color: red;
+             }
+          </style>
+       </head>
+       <body>
+          <ul>
+             <li id="li1">First list element</li>
+             <li class="lmnt">Second list element</li>
+             <li data-num="3">Third list element</li>
+          </ul>
+       </body>
+    </html>
 
 5.
 We can also pass tag object as target argument.
@@ -330,12 +330,14 @@ Otherwise, 'tagname.class' will be extracted.
 So, three more ways to provide same design:
 
 5.1
+
     $rule1 = Style::rule()->addTarget("ul")
         ->addDescendant("li")->addDeclaration("background-color", "yellow");
     $rule2 = Style::rule()->addTarget($li2)
         ->addDeclaration("background-color",  "red");
  
 5.2   
+
     //Will work for all li's because li3 has no id nor class
     $rule1 = Style::rule()->addDeclaration("background-color", "red")
         ->addTarget($li3);
@@ -343,42 +345,47 @@ So, three more ways to provide same design:
         ->addTarget($li1)->addTarget("li")->addAttribute("data-num", 3);
       
 5.3
+
     $rule1 = Style::rule()->addTarget($li1)
         ->addNeighbor(".lmnt")->addDeclaration("background-color", "red");
     $rule2 = Style::rule()->addTarget("ul")
         ->addDeclaration("background-color", "yellow");
 
 Code for li's was:
-  <li id="li1">First list element</li>
-  <li class="lmnt">Second list element</li>
-  <li data-num="3">Third list element</li>
+
+    <li id="li1">First list element</li>
+    <li class="lmnt">Second list element</li>
+    <li data-num="3">Third list element</li>
 
 These would produce following css codes respectively:
 
 5.1
-  ul li {
-      background-color: yellow;
-  }
-  li.lmnt {
-      background-color: red;
-  }
+
+    ul li {
+        background-color: yellow;
+    }
+    li.lmnt {
+        background-color: red;
+    }
 
 5.2
-  li {
-      background-color: red;
-  }
-  #li1,
-  li[data-num='3'] {
-      background-color: yellow;
-  }
+
+    li {
+        background-color: red;
+    }
+    #li1,
+    li[data-num='3'] {
+        background-color: yellow;
+    }
 
 5.3 Is sligtly different
-  #li1 ~ .lmnt {
-      background-color: red;
-  }
-  ul {
-      background-color: yellow;
-  }
+
+    #li1 ~ .lmnt {
+        background-color: red;
+    }
+    ul {
+        background-color: yellow;
+    }
 
 You may pass third 'true' argument to CssRule::addDeclaration method to
 automatically generate different css prefixes for declaration value:
@@ -390,13 +397,13 @@ automatically generate different css prefixes for declaration value:
 
 result
 
-  * {
-      background: -moz-linear-gradient(test);
-      background: -webkit-linear-gradient(test);
-      background: -ms-linear-gradient(test);
-      background: -o-linear-gradient(test);
-      background: linear-gradient(test);
-  }
+    * {
+        background: -moz-linear-gradient(test);
+        background: -webkit-linear-gradient(test);
+        background: -ms-linear-gradient(test);
+        background: -o-linear-gradient(test);
+        background: linear-gradient(test);
+    }
 
 
 
